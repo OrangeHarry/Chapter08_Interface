@@ -1,22 +1,23 @@
 package ch08_1_interface;
 
-public class Television implements RemoteControl {
-	// 필드
+public class SmartTelevision implements RemoteControl, Serchable {
 	private int volum;
+	private String name;
 
-	// 추상 메소드의 실체 메소드
+	public SmartTelevision(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public void turnOn() {
-		System.out.println("TV를 켭니다.");
+		System.out.println(name + "TV를 켭니다");
 	}
 
-	// 추상 메소드의 실체 메소드
 	@Override
 	public void turnOff() {
-		System.out.println("TV를 끕니다.");
+		System.out.println(name + "TV를 끕니다");
 	}
 
-	// 추상 메소드의 실체 메소드,set으로 필드값 세팅
 	@Override
 	public void setVolum(int volum) {
 		if (volum > RemoteControl.MAX_VOLUM) { // 인터페이스의 상수를 이용해서 volum의 필드값을 제한
@@ -28,4 +29,10 @@ public class Television implements RemoteControl {
 		}
 		System.out.println("현재 TV 볼륨 = " + this.volum);
 	}
+
+	@Override
+	public void serch(String url) {
+		System.out.println(url + "을 검색합니다.");
+	}
+
 }
